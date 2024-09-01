@@ -1,0 +1,115 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "cockroachdb"
+  url      = env("DATABASE_URL")
+}
+
+model Prospect {
+  id                    String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+  contactName           String?
+  email                 String?  @unique
+  companyName           String?
+  industry              String?
+  role                  String?
+  dataWorkloadType      DataWorkload
+  cloudProvider         CloudProvider
+  currentDatabase       Databases[]
+  isNewApp              Boolean
+  scalability           Boolean
+  consistency           Boolean
+  multiRegion           Boolean
+  dataLocality          Boolean
+  dataCompliance        Boolean
+  highAvailability      Boolean
+  faultTolerance        Boolean
+  performance           Boolean
+  queryLatency          Int
+  additionalNotes       String?
+  timeline              String
+  result                Result?
+}
+
+model CustomerStory {
+  id                    String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+  companyName           String
+  industry              String
+  cloudProvider         CloudProvider
+  previousDatabase      Databases[]
+  useCase               String
+  businessChallenge     String
+  technicalChallenge    Features[]
+  businessOutcome       String
+  results               Result[]
+}
+
+
+model Result {
+  id                    String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+  prospect              Prospect @relation(fields: [prospectId], references: [id])
+  prospectId            String   @unique @db.Uuid
+  score                 Int
+  helpfulFeatures       Features[]
+  matchingCustomerStories CustomerStory[]
+}
+
+enum DataWorkload {
+  TRANSACTIONAL
+  ANALYTICAL
+  HYBRID
+  OTHER
+}
+
+enum CloudProvider {
+  AWS
+  GCP
+  AZURE
+  MULTI_CLOUD
+  ON_PREMISE
+  HYBRID
+}
+
+enum Databases {
+  MYSQL
+  POSTGRES
+  ORACLE
+  SQL_SERVER
+  MARIA_DB
+  AURORA
+  DYNAMO_DB
+  SPANNER
+  TERADATA
+  COUCHBASE
+  MONGO_DB
+  IBM_DB2
+  CASSANDRA
+  ELASTICSEARCH
+  REDIS
+  OTHER
+  NONE
+}
+
+enum Features {
+  SCALABILITY
+  CONSISTENCY
+  MULTI_REGION
+  DATA_LOCALITY
+  DATA_COMPLIANCE
+  HIGH_AVAILABILITY
+  FAULT_TOLERANCE
+  PERFORMANCE
+}
