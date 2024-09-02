@@ -8,7 +8,8 @@
     "start-server": "node api/index.js",
     "pull-db": "npx prisma db pull",
     "migrate": "npx prisma migrate dev --name",
-    "vercel-build": "prisma generate && prisma migrate deploy"
+    "vercel-build": "prisma generate && prisma migrate deploy",
+    "build": "npm install"
   },
   "keywords": [],
   "author": "Elliot Park <elliotpark410@gmail.com>",

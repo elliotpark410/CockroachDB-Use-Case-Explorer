@@ -57,7 +57,7 @@ async function fetchProspectData() {
     // await listDatabases();
     // await showTables();
     // await addNewProspect();
-    await fetchProspectData();
+    // await fetchProspectData();
   } catch (error) {
     console.error("Error:", error);
   } finally {
