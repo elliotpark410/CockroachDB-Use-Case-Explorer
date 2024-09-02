@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -14,57 +8,57 @@ datasource db {
 }
 
 model Prospect {
-  id                    String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  createdAt             DateTime @default(now())
-  updatedAt             DateTime @updatedAt
-  contactName           String?
-  email                 String?  @unique
-  companyName           String?
-  industry              String?
-  role                  String?
-  dataWorkloadType      DataWorkload
-  cloudProvider         CloudProvider
-  currentDatabase       Databases[]
-  isNewApp              Boolean
-  scalability           Boolean
-  consistency           Boolean
-  multiRegion           Boolean
-  dataLocality          Boolean
-  dataCompliance        Boolean
-  highAvailability      Boolean
-  faultTolerance        Boolean
-  performance           Boolean
-  queryLatency          Int
-  additionalNotes       String?
-  timeline              String
-  result                Result?
+  id               String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+  contactName      String?
+  email            String?
+  companyName      String?
+  industry         String?
+  role             String?
+  dataWorkloadType DataWorkload
+  cloudProvider    CloudProvider
+  currentDatabase  Databases[]
+  isNewApp         Boolean?
+  scalability      Boolean?
+  consistency      Boolean?
+  multiRegion      Boolean?
+  dataLocality     Boolean?
+  dataCompliance   Boolean?
+  highAvailability Boolean?
+  faultTolerance   Boolean?
+  performance      Boolean?
+  queryLatency     Int
+  additionalNotes  String?
+  timeline         String
+  dataVolume       String?
+  result           Result?
 }
 
 model CustomerStory {
-  id                    String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  createdAt             DateTime @default(now())
-  updatedAt             DateTime @updatedAt
-  companyName           String
-  industry              String
-  cloudProvider         CloudProvider
-  previousDatabase      Databases[]
-  useCase               String
-  businessChallenge     String
-  technicalChallenge    Features[]
-  businessOutcome       String
-  results               Result[]
+  id                 String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  createdAt          DateTime      @default(now())
+  updatedAt          DateTime      @updatedAt
+  companyName        String
+  industry           String
+  cloudProvider      CloudProvider
+  previousDatabase   Databases[]
+  useCase            String
+  businessChallenge  String
+  technicalChallenge Features[]
+  businessOutcome    String
+  results            Result[]      @relation("CustomerStoryToResult")
 }
 
-
 model Result {
-  id                    String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  createdAt             DateTime @default(now())
-  updatedAt             DateTime @updatedAt
-  prospect              Prospect @relation(fields: [prospectId], references: [id])
-  prospectId            String   @unique @db.Uuid
-  score                 Int
-  helpfulFeatures       Features[]
-  matchingCustomerStories CustomerStory[]
+  id                      String          @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  createdAt               DateTime        @default(now())
+  updatedAt               DateTime        @updatedAt
+  prospectId              String          @unique @db.Uuid
+  score                   Int
+  helpfulFeatures         Features[]
+  prospect                Prospect        @relation(fields: [prospectId], references: [id])
+  matchingCustomerStories CustomerStory[] @relation("CustomerStoryToResult")
 }
 
 enum DataWorkload {
