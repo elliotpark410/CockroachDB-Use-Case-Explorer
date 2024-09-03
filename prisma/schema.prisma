@@ -94,6 +94,8 @@ enum TechStack {
   ELASTICSEARCH
   REDIS
   KAFKA
+  KUBERNETES
+  DOCKER
   OTHER
   NA
 }
