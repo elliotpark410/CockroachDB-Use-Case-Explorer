@@ -19,45 +19,39 @@ model Prospect {
   dataWorkloadType DataWorkload
   cloudProvider    CloudProvider
   techStack        TechStack[]
+  dataVolume       String?
   isNewApp         Boolean?
-  scalability      Boolean?
-  consistency      Boolean?
-  multiRegion      Boolean?
-  dataLocality     Boolean?
-  dataCompliance   Boolean?
-  highAvailability Boolean?
-  faultTolerance   Boolean?
-  performance      Boolean?
+  keyFeatures      Features[]
   queryLatency     Int
   additionalNotes  String?
   timeline         String
-  dataVolume       String?
   result           Result?
 }
 
 model CustomerStory {
-  id                 String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  createdAt          DateTime      @default(now())
-  updatedAt          DateTime      @updatedAt
-  companyName        String
-  industry           String
-  cloudProvider      CloudProvider?
-  techStack          TechStack[]
-  useCase            String?
-  businessChallenge  String?
-  technicalChallenge String?
-  businessOutcome    String?
-  requiredFeatures   Features[]
+  id            String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  companyName   String         @unique
+  industry      String
+  cloudProvider CloudProvider?
+  techStack     TechStack[]
+  useCase       String?
+  challenge     String?
+  solution      String?
+  keyFeatures   Features[]
+  results       Result[]
 }
 
 model Result {
-  id                      String          @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  createdAt               DateTime        @default(now())
-  updatedAt               DateTime        @updatedAt
-  prospectId              String          @unique @db.Uuid
-  score                   Int
-  helpfulFeatures         Features[]
-  prospect                Prospect        @relation(fields: [prospectId], references: [id])
+  id               String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
+  prospectId       String         @unique @db.Uuid
+  score            Int?
+  relevantCustomer String?
+  customerStory    CustomerStory? @relation(fields: [relevantCustomer], references: [companyName])
+  prospect         Prospect       @relation(fields: [prospectId], references: [id])
 }
 
 enum DataWorkload {
@@ -74,7 +68,7 @@ enum CloudProvider {
   MULTI_CLOUD
   ON_PREMISE
   HYBRID
-  NA
+  OTHER
 }
 
 enum TechStack {
@@ -109,4 +103,5 @@ enum Features {
   HIGH_AVAILABILITY
   FAULT_TOLERANCE
   PERFORMANCE
+  MULTI_CLOUD
 }

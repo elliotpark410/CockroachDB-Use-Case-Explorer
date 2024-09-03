@@ -1,5 +1,13 @@
 import React, { useState } from 'react';
-import { ChakraProvider, Box, VStack, Heading, Text, Button, useToast } from '@chakra-ui/react';
+import {
+  ChakraProvider,
+  Box,
+  VStack,
+  Heading,
+  Text,
+  Button,
+  useToast,
+} from '@chakra-ui/react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import ProspectForm from '../components/ProspectForm';
@@ -13,19 +21,13 @@ const validationSchema = Yup.object({
   role: Yup.string().required('Required'),
   dataWorkloadType: Yup.string().required('Required'),
   cloudProvider: Yup.string().required('Required'),
-  currentDatabase: Yup.array().min(1, 'Select at least one'),
-  isNewApp: Yup.boolean().required('Required'),
-  scalability: Yup.boolean(),
-  consistency: Yup.boolean(),
-  multiRegion: Yup.boolean(),
-  dataLocality: Yup.boolean(),
-  dataCompliance: Yup.boolean(),
-  highAvailability: Yup.boolean(),
-  faultTolerance: Yup.boolean(),
-  performance: Yup.boolean(),
-  queryLatency: Yup.number().required('Required'),
-  timeline: Yup.string().required('Required'),
+  techStack: Yup.array().min(1, 'Select at least one'),
   dataVolume: Yup.string().required('Required'),
+  isNewApp: Yup.boolean().nullable(),
+  keyFeatures: Yup.array(),
+  queryLatency: Yup.number().required('Required').min(0, 'Must be non-negative'),
+  timeline: Yup.string().required('Required'),
+  additionalNotes: Yup.string(),
 });
 
 export default function Home() {
@@ -75,19 +77,13 @@ export default function Home() {
                 role: '',
                 dataWorkloadType: '',
                 cloudProvider: '',
-                currentDatabase: [],
+                techStack: [],
+                dataVolume: '',
                 isNewApp: null,
-                scalability: false,
-                consistency: false,
-                multiRegion: false,
-                dataLocality: false,
-                dataCompliance: false,
-                highAvailability: false,
-                faultTolerance: false,
-                performance: false,
+                keyFeatures: [],
                 queryLatency: 0,
                 timeline: '',
-                dataVolume: '',
+                additionalNotes: '',
               }}
               validationSchema={validationSchema}
               onSubmit={handleSubmit}
