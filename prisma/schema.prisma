@@ -18,7 +18,7 @@ model Prospect {
   role             String?
   dataWorkloadType DataWorkload
   cloudProvider    CloudProvider
-  currentDatabase  Databases[]
+  techStack        TechStack[]
   isNewApp         Boolean?
   scalability      Boolean?
   consistency      Boolean?
@@ -41,13 +41,13 @@ model CustomerStory {
   updatedAt          DateTime      @updatedAt
   companyName        String
   industry           String
-  cloudProvider      CloudProvider
-  previousDatabase   Databases[]
-  useCase            String
-  businessChallenge  String
-  technicalChallenge Features[]
-  businessOutcome    String
-  results            Result[]      @relation("CustomerStoryToResult")
+  cloudProvider      CloudProvider?
+  techStack          TechStack[]
+  useCase            String?
+  businessChallenge  String?
+  technicalChallenge String?
+  businessOutcome    String?
+  requiredFeatures   Features[]
 }
 
 model Result {
@@ -58,7 +58,6 @@ model Result {
   score                   Int
   helpfulFeatures         Features[]
   prospect                Prospect        @relation(fields: [prospectId], references: [id])
-  matchingCustomerStories CustomerStory[] @relation("CustomerStoryToResult")
 }
 
 enum DataWorkload {
@@ -75,9 +74,10 @@ enum CloudProvider {
   MULTI_CLOUD
   ON_PREMISE
   HYBRID
+  NA
 }
 
-enum Databases {
+enum TechStack {
   MYSQL
   POSTGRES
   ORACLE
@@ -93,8 +93,9 @@ enum Databases {
   CASSANDRA
   ELASTICSEARCH
   REDIS
+  KAFKA
   OTHER
-  NONE
+  NA
 }
 
 enum Features {
