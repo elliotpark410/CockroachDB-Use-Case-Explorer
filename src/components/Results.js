@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, VStack, Heading, Text, List, ListItem, Badge, SimpleGrid, Progress } from '@chakra-ui/react';
+import { Box, VStack, Heading, Text, List, ListItem, Badge, SimpleGrid } from '@chakra-ui/react';
 import { CheckIcon } from '@chakra-ui/icons';
 
 const CustomerStory = ({ story }) => (
@@ -9,8 +9,6 @@ const CustomerStory = ({ story }) => (
     <Text mt={2}><strong>Use Case:</strong> {story.useCase}</Text>
     <Text mt={2}><strong>Challenge:</strong> {story.challenge}</Text>
     <Text mt={2}><strong>Solution:</strong> {story.solution}</Text>
-    <Text mt={2}><strong>Match Score:</strong> {story.matchScore.toFixed(2)}%</Text>
-    <Progress value={story.matchScore} mt={2} colorScheme="green" />
     <SimpleGrid columns={2} spacing={2} mt={2}>
       {story.keyFeatures.map((feature, index) => (
         <Badge key={index} colorScheme="green">
