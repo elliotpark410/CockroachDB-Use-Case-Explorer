@@ -1,10 +1,18 @@
 const weights = {
-  HIGH_AVAILABILITY: 30,
-  SCALABILITY: 28,
-  CONSISTENCY: 28,
-  MULTI_REGION: 26,
-  PERFORMANCE: 24,
-  DATA_COMPLIANCE: 24,
+  HIGH_AVAILABILITY: 25,
+  SCALABILITY: 25,
+  CONSISTENCY: 20,
+  MULTI_REGION: 15,
+  PERFORMANCE: 15,
+  DATA_COMPLIANCE: 15,
+  MULTI_CLOUD: 15,
+};
+
+const techStackBonus = {
+  POSTGRES: 5,
+  DOCKER: 4,
+  KAFKA: 3,
+  MYSQL: 3,
 };
 
 export function calculateScore(prospectData) {
@@ -25,34 +33,35 @@ export function calculateScore(prospectData) {
     }
   });
 
-  // Apply minimum scores based on features selected
-  if (featuresSelected >= 4) {
-    score = Math.max(score, 96);
-  } else if (featuresSelected >= 3) {
-    score = Math.max(score, 90);
-  } else if (featuresSelected >= 2) {
-    score = Math.max(score, 85);
-  } else if (featuresSelected >= 1) {
-    score = Math.max(score, 80);
-  }
-
   // Query Latency
   if (prospectData.queryLatency <= 1000) {
-    score += 20;
+    score += 5;
+    console.log('Added 5 for query latency of 1 second or less');
   }
 
-  // Normalize score
-  const maxScore = Object.values(weights).reduce((a, b) => a + b, 0) + 20;
-  const normalizedScore = Math.round((score / maxScore) * 100);
-  const finalScore = Math.min(normalizedScore, 100);
+  // Tech Stack Bonus
+  prospectData.techStack.forEach(tech => {
+    if (techStackBonus[tech]) {
+      score += techStackBonus[tech];
+      console.log(`Added ${techStackBonus[tech]} for ${tech} in tech stack`);
+    }
+  });
 
-  // Ensure final score is at least 80
-  const adjustedFinalScore = Math.max(finalScore, 80);
+  // Ensure final score is between 0 and 100
+  const finalScore = Math.min(Math.max(score, 0), 100);
 
-  console.log('Raw Score:', score);
-  console.log('Max Score:', maxScore);
-  console.log('Normalized Score:', normalizedScore);
-  console.log('Final Score:', adjustedFinalScore);
+  console.log('Features Selected:', featuresSelected);
+  console.log('Final Score:', finalScore);
 
-  return adjustedFinalScore;
+  return finalScore;
 }
+
+const prospectData = {
+  dataWorkloadType: 'TRANSACTIONAL',
+  keyFeatures: ['SCALABILITY', 'DATA_COMPLIANCE', 'MULTI_CLOUD', 'CONSISTENCY'],
+  queryLatency: 125,
+  techStack: ['MYSQL', 'POSTGRES']
+};
+
+const result = calculateScore(prospectData);
+console.log('Result:', result);
