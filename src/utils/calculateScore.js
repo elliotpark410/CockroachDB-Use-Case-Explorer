@@ -61,7 +61,7 @@ export function calculateScore(prospectData) {
 }
 
 export function getScoreExplanation(score, prospectData) {
-  let explanation = `Based on your input, CockroachDB appears to be a ${getScoreCategory(score)} for your use case. `;
+  let explanation = `Based on your input, CockroachDB appears to be a ${score}% fit for your use case. `;
 
   if (score >= 80) {
     explanation += "CockroachDB's features align very well with your requirements, particularly in areas like ";
