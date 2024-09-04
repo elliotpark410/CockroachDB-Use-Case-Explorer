@@ -23,7 +23,7 @@ const CustomerStory = ({ story }) => (
 );
 
 const Results = ({ data }) => {
-  const { fitScore, scoreExplanation, customerStories } = data;
+  const { fitScore, customerStories } = data;
 
   return (
     <VStack spacing={6} align="stretch">
@@ -32,7 +32,6 @@ const Results = ({ data }) => {
         <Text fontSize="4xl" fontWeight="bold" color={fitScore > 70 ? "green.500" : fitScore > 40 ? "yellow.500" : "red.500"}>
           {fitScore}%
         </Text>
-        <Text mt={2}>{scoreExplanation}</Text>
       </Box>
 
       <Box>

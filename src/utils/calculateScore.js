@@ -59,29 +59,3 @@ export function calculateScore(prospectData) {
 
   return Math.min(normalizedScore, 100); // Ensure score doesn't exceed 100
 }
-
-export function getScoreExplanation(score, prospectData) {
-  let explanation = `Based on your input, CockroachDB appears to be a ${score}% fit for your use case. `;
-
-  if (score >= 80) {
-    explanation += "CockroachDB's features align very well with your requirements, particularly in areas like ";
-  } else if (score >= 60) {
-    explanation += "CockroachDB offers strong capabilities that match many of your needs, especially in ";
-  } else if (score >= 40) {
-    explanation += "While CockroachDB may meet some of your requirements, there might be areas where it's not the perfect fit. It's strongest in ";
-  } else {
-    explanation += "Although CockroachDB might not be the ideal solution for all your needs, it does offer some benefits in areas like ";
-  }
-
-  const strengths = [];
-  if (prospectData.scalability) strengths.push("scalability");
-  if (prospectData.consistency) strengths.push("consistency");
-  if (prospectData.multiRegion) strengths.push("multi-region support");
-  if (prospectData.highAvailability) strengths.push("high availability");
-  if (prospectData.faultTolerance) strengths.push("fault tolerance");
-  if (prospectData.performance) strengths.push("performance");
-
-  explanation += strengths.slice(0, 3).join(", ") + ".";
-
-  return explanation;
-}
