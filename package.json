@@ -14,7 +14,7 @@
     "local-server": "node server.js",
     "lint": "next lint",
     "prisma-format": "prisma format",
-    "seed": "node src/db/seed/customerStory.js"
+    "seed": "node src/db/seed/index.js"
   },
   "keywords": [],
   "author": "Elliot Park <elliotpark410@gmail.com>",

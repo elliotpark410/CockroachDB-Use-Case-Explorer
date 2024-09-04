@@ -1,7 +1,6 @@
 import { TechStack, CloudProvider, Features } from "@prisma/client";
-import prisma from "../../lib/prisma.js";
 
-const customerStories = [
+export const customerStories = [
   {
     companyName: "Netflix",
     industry: "Media",
@@ -100,23 +99,3 @@ const customerStories = [
     ]
   }
 ];
-
-async function main() {
-  console.log(`Start seeding ...`);
-  for (const story of customerStories) {
-    const customerStory = await prisma.customerStory.create({
-      data: story,
-    });
-    console.log(`Created customer story with id: ${customerStory.id}`);
-  }
-  console.log(`Seeding finished.`);
-}
-
-main()
-  .catch((e) => {
-    console.error(e);
-    process.exit(1);
-  })
-  .finally(async () => {
-    await prisma.$disconnect();
-  });
