@@ -4,8 +4,6 @@ A simple form that returns CockroachDB case studies and scoring based on prospec
 
 Vercel link!!!
 
-<br>
-
 # Technologies Used
 
 * React/Next: For building the user interface.
@@ -14,8 +12,6 @@ Vercel link!!!
 * CockroachDB Serverless: The database used for storing application data.
 * Vercel: For domain hosting.
 * dotenv: For environment variables.
-
-<br>
 
 # Author
 
@@ -26,7 +22,6 @@ LinkedIn: [https://www.linkedin.com/in/elliot-park/](https://www.linkedin.com/in
 <br>
 
 Email: [elliotpark410@gmail.com](mailto:elliotpark410@gmail.com)
-<br>
 
 # License
 
