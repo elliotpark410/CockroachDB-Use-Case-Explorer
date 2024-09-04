@@ -7,8 +7,8 @@ export const customerStories = [
     cloudProvider: CloudProvider.MULTI_CLOUD,
     techStack: [TechStack.NA],
     useCase: "Device Management Platform for testing and ensuring Netflix app quality across various devices like smart phones, tablets, TVs, etc",
-    challenge: "Scaling device management capabilities while maintaining data consistency and fault tolerance across a growing number of diverse devices",
-    solution: "Successfully scaled device management and testing capabilities, ensuring high-quality streaming experience across hundreds of device types",
+    challenge: "Scaling device management capabilities while maintaining data consistency and fault tolerance",
+    solution: "With CockroachDB, they successfully scaled device management and testing capabilities, ensuring high-quality streaming experience across hundreds of device types",
     keyFeatures: [
       Features.SCALABILITY,
       Features.CONSISTENCY,
@@ -22,7 +22,7 @@ export const customerStories = [
     techStack: [TechStack.POSTGRES],
     useCase: "Supporting their online sports betting platform with consitency and high availability",
     challenge: "Expanding online gaming operations while ensuring low latency, high availability, and compliance with various regional regulations",
-    solution: "Successfully handles over 30,000 transactions per second across 4 states and regions while following compliance across multiple jurisdictions",
+    solution: "Successfully handles over 30,000 transactions per second across 4 states and regions while maintianing compliance",
     keyFeatures: [
       Features.HIGH_AVAILABILITY,
       Features.CONSISTENCY,
@@ -35,9 +35,9 @@ export const customerStories = [
     industry: "eCommerce",
     cloudProvider: CloudProvider.MULTI_CLOUD,
     techStack: [],
-    useCase: "They provide same-day delivery services. Building a highly available, distributed payment system designed for correctness to support same-day delivery services across the United States",
-    challenge: "Developing a multi-region payment service that ensures transaction correctness, concurrency control, and high availability while processing millions of transactions daily",
-    solution: "Implemented CockroachDB Dedicated and they process 1-2 million transactions per day with 99.999% uptime across 4 regions",
+    useCase: "Building a highly available, distributed payment system designed for correctness to support same-day delivery services across the United States",
+    challenge: "Developing a multi-region payment service that ensures transaction correctness, concurrency control, and high availability",
+    solution: "Implemented CockroachDB Dedicated and they process 1-2 million transactions per day with zero downtime across 4 regions",
     keyFeatures: [
       Features.SCALABILITY,
       Features.MULTI_REGION,
@@ -52,8 +52,8 @@ export const customerStories = [
     cloudProvider: CloudProvider.AWS,
     techStack: [TechStack.POSTGRES],
     useCase: "Real-time data store for order management, package tracking, and shipping protection across billions of e-commerce orders",
-    challenge: "Scaling order, shipment, and tracking data into the billions while maintaining high availability and performance, especially during peak seasons like Black Friday",
-    solution: "Handles over a billion records with zero downtime, even during peak seasons",
+    challenge: "Scaling order, shipment, and tracking data while maintaining high availability and performance, especially during days like Black Friday",
+    solution: "Implemented CockroachDB as their system of record to handle over a billion records with zero downtime, even during peak seasons",
     keyFeatures: [
       Features.SCALABILITY,
       Features.HIGH_AVAILABILITY,
@@ -66,9 +66,9 @@ export const customerStories = [
     industry: "Cybersecurity",
     cloudProvider: CloudProvider.AWS,
     techStack: [TechStack.KUBERNETES, TechStack.KAFKA, TechStack.DOCKER],
-    useCase: "Cloud-native data protection platform that analyzes customer data for sensitive information detection across various cloud applications",
-    challenge: "Scaling database operations to handle high volumes of API requests and support an interactive analytics dashboard while preparing for multi-region expansion",
-    solution: "Analyze and process terabytes of customer data for sensitive information detection",
+    useCase: "The provide a cloud-native data security platform that detects if their is sensitive information in cloud environments",
+    challenge: "Looking for a multi-region, scalable database to handle high volumes of API requests and support an interactive analytics dashboard",
+    solution: "Implemented CockroachDB as the transactional store to analyze and process terabytes of customer data for sensitive information detection",
     keyFeatures: [
       Features.SCALABILITY,
       Features.MULTI_REGION,
@@ -81,9 +81,9 @@ export const customerStories = [
     industry: "Food Delivery",
     cloudProvider: CloudProvider.MULTI_CLOUD,
     techStack: [TechStack.AURORA],
-    useCase: 'Needed a fault-toleranta and scalable distributed database that will not fail during peak seasons',
-    challenge: 'Aurora was not able to scale during peak business days',
-    solution: 'Manages over 300 CockroachDB clusters, handling millions of queries per second and petabytes of data',
+    useCase: 'Looking for a fault-toleranta and scalable distributed database that will not fail during peak seasons',
+    challenge: 'Aurora was not able to scale and it would crash during peak seasons leading to hours of downtime',
+    solution: 'Implemented CockroachDB for its resilience. They are doing 1.2 million queries per second at daily peak hours, 1.9 petabytes of data on disk, and managing over 300 CockroachDB clusters',
     keyFeatures: [
       Features.SCALABILITY,
       Features.HIGH_AVAILABILITY,
@@ -129,9 +129,9 @@ export const customerStories = [
     industry: "Data Analytics",
     cloudProvider: CloudProvider.AWS,
     techStack: [],
-    useCase: "Building a global, distributed query engine (Starburst Galaxy)",
+    useCase: "Building a cloud-native analytics platform that will act as a single point of access to data spread across multiple data sources (data lakes, data warehouses, databases) to address issues like data silos",
     challenge: "Developing their application with a distributed architecture that can span multiple geographies, survive regional failure, support scale, and ensure 24/7 uptime",
-    solution: "Operates across 5 regions, handling exabytes of data scale",
+    solution: "Implemented CockroachDB to build their highly available, global application with low read latency. It operates across 5 regions, handling exabytes of data",
     keyFeatures: [
       Features.MULTI_REGION,
       Features.SCALABILITY,
@@ -147,7 +147,7 @@ export const customerStories = [
     cloudProvider: CloudProvider.AWS,
     techStack: [TechStack.KUBERNETES, TechStack.POSTGRES],
     useCase: "Building a new banking infrastructure (Stash Core) to support their investing app for 2 million active subscribers",
-    challenge: "Achieving five-nines of availability and building a multi-region, multi-cloud foundation for their banking app",
+    challenge: "Achieving five 9s of availability and building a multi-region, multi-cloud foundation for their banking app",
     solution: "CockroachDB is used as the system of record for their entire banking infrastructure that supports 2 million active subscribers",
     keyFeatures: [
       Features.HIGH_AVAILABILITY,
@@ -174,5 +174,20 @@ export const customerStories = [
       Features.CONSISTENCY,
       Features.DATA_LOCALITY
     ],
-  }
+  },
+  {
+    companyName: "Kami",
+    industry: "Education Technology",
+    cloudProvider: CloudProvider.NA,
+    techStack: [TechStack.POSTGRES],
+    useCase: "Digital classroom application for collaborative note-taking",
+    challenge: "Scaling database infrastructure to handle exponential growth of over 1M new users per week during the COVID-19 pandemic",
+    solution: "Migrated from Postgres to CockroachDB, enabling 20x business growth over 180 countires with over 30 million users",
+    keyFeatures: [
+      Features.SCALABILITY,
+      Features.PERFORMANCE,
+      Features.CONSISTENCY,
+      Features.MULTI_REGION
+    ]
+  },
 ];

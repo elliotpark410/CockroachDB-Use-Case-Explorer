@@ -131,7 +131,7 @@ const ProspectForm = () => {
           </CustomFormControl>
 
       <FormControl>
-        <FormLabel>Minimum Acceptable Query Latency (ms)</FormLabel>
+        <FormLabel>Service Level Agreemnts for query response times (ms)</FormLabel>
         <Field name="queryLatency">
           {({ field }) => (
             <NumberInput
