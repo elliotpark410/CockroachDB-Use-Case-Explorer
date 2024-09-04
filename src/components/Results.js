@@ -23,7 +23,7 @@ const CustomerStory = ({ story }) => (
 );
 
 const Results = ({ data }) => {
-  const { fitScore, scoreExplanation, customerStory } = data;
+  const { fitScore, scoreExplanation, customerStories } = data;
 
   return (
     <VStack spacing={6} align="stretch">
@@ -38,7 +38,7 @@ const Results = ({ data }) => {
       <Box>
         <Heading size="md">Matching Customer Stories</Heading>
         <List spacing={4} mt={2}>
-          {customerStory.map((story, index) => (
+          {customerStories.map((story, index) => (
             <ListItem key={index}>
               <CustomerStory story={story} />
             </ListItem>

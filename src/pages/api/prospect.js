@@ -25,9 +25,7 @@ export default async function handler(req, res) {
 
       const saveResult = await prisma.result.create({
         data: {
-          prospectId: prospect.id,
           score: fitScore,
-          customerStoryId: customerStories[0]?.id,
           prospect: {
             connect: { id: prospect.id }
           },
