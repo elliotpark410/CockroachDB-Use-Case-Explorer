@@ -14,14 +14,20 @@ export default async function handler(req, res) {
         data: prospectData,
       });
 
-      // Match customer story
-      const customerStory = await matchCustomerStory(prospectData);
+      console.log("prospect")
+      console.log(prospect)
 
-      // Calculate fit score
-      const fitScore = calculateScore(prospectData);
+      // // Match customer story
+      // const customerStory = await matchCustomerStory(prospectData);
 
-      res.status(200).json({ prospect, customerStory, fitScore });
+      // // Calculate fit score
+      // const fitScore = calculateScore(prospectData);
+
+      // res.status(200).json({ prospect, customerStory, fitScore });
+      res.status(200).json(prospect);
+
     } catch (error) {
+      console.error('Error processing prospect data:', error);
       res.status(500).json({ error: 'Error processing prospect data' });
     }
   } else {

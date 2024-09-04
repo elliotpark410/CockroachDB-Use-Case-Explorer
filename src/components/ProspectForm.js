@@ -14,10 +14,15 @@ import {
   Textarea,
   CheckboxGroup,
   SimpleGrid,
+  RadioGroup,
+  Radio,
+  HStack,
 } from '@chakra-ui/react';
-import { Field } from 'formik';
+import { Field, useFormikContext } from 'formik';
 
 const ProspectForm = () => {
+  const { values, setFieldValue } = useFormikContext();
+
   return (
     <VStack spacing={4} align="stretch">
       <FormControl isRequired>
@@ -71,12 +76,13 @@ const ProspectForm = () => {
       </FormControl>
 
       <FormControl>
-        <FormLabel>Tech Stack (Optional)</FormLabel>
+        <FormLabel>Tech Stack</FormLabel>
         <Field name="techStack">
-          {({ field, form }) => (
+          {({ field }) => (
             <CheckboxGroup
               {...field}
-              onChange={(values) => form.setFieldValue('techStack', values)}
+              value={values.techStack || []}
+              onChange={(values) => setFieldValue('techStack', values)}
             >
               <SimpleGrid columns={3} spacing={2}>
                 {['MYSQL', 'POSTGRES', 'ORACLE', 'SQL_SERVER', 'MARIA_DB', 'AURORA', 'DYNAMO_DB', 'SPANNER', 'TERADATA', 'COUCHBASE', 'MONGO_DB', 'IBM_DB2', 'CASSANDRA', 'ELASTICSEARCH', 'REDIS', 'KAFKA', 'KUBERNETES', 'DOCKER', 'OTHER'].map((tech) => (
@@ -103,39 +109,61 @@ const ProspectForm = () => {
 
       <FormControl>
         <FormLabel>Is this for a new application?</FormLabel>
-        <Field name="isNewApp" as={Select}>
-          <option value="">Select an option</option>
-          <option value="true">Yes</option>
-          <option value="false">No</option>
+        <Field name="isNewApp">
+          {({ field }) => (
+            <RadioGroup {...field} value={values.isNewApp === null ? '' : values.isNewApp.toString()}>
+              <HStack spacing={4}>
+                <Radio
+                  value="true"
+                  onChange={() => setFieldValue('isNewApp', true)}
+                >
+                  Yes
+                </Radio>
+                <Radio
+                  value="false"
+                  onChange={() => setFieldValue('isNewApp', false)}
+                >
+                  No
+                </Radio>
+              </HStack>
+            </RadioGroup>
+          )}
         </Field>
       </FormControl>
 
       <FormControl>
         <FormLabel>Required Features</FormLabel>
-        <Field name="keyFeatures" as={CheckboxGroup}>
+        <Field name="keyFeatures">
           {({ field }) => (
-            <SimpleGrid columns={3} spacing={2}>
-              {['SCALABILITY', 'CONSISTENCY', 'MULTI_REGION', 'DATA_LOCALITY', 'DATA_COMPLIANCE', 'HIGH_AVAILABILITY', 'FAULT_TOLERANCE', 'PERFORMANCE', 'MULTI_CLOUD'].map((feature) => (
-                <Checkbox key={feature} {...field} value={feature}>
-                  {feature.replace('_', ' ')}
-                </Checkbox>
-              ))}
-            </SimpleGrid>
+            <CheckboxGroup
+              {...field}
+              value={values.keyFeatures || []}
+              onChange={(values) => setFieldValue('keyFeatures', values)}
+            >
+              <SimpleGrid columns={3} spacing={2}>
+                {['SCALABILITY', 'CONSISTENCY', 'MULTI_REGION', 'DATA_LOCALITY', 'DATA_COMPLIANCE', 'HIGH_AVAILABILITY', 'FAULT_TOLERANCE', 'PERFORMANCE', 'MULTI_CLOUD'].map((feature) => (
+                  <Checkbox key={feature} value={feature}>
+                    {feature.replace('_', ' ')}
+                  </Checkbox>
+                ))}
+              </SimpleGrid>
+            </CheckboxGroup>
           )}
         </Field>
       </FormControl>
 
-      <FormControl isRequired>
+      <FormControl>
         <FormLabel>Minimum Acceptable Query Latency (ms)</FormLabel>
         <Field name="queryLatency">
-          {({ field, form }) => (
+          {({ field }) => (
             <NumberInput
               {...field}
+              value={field.value || ''}
               min={1}
               step={1}
               precision={0}
               onChange={(valueString, valueNumber) => {
-                form.setFieldValue(field.name, valueNumber);
+                setFieldValue('queryLatency', valueNumber);
               }}
             >
               <NumberInputField />

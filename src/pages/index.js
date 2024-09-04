@@ -25,7 +25,7 @@ const validationSchema = Yup.object({
   dataVolume: Yup.string(),
   isNewApp: Yup.boolean().nullable(),
   keyFeatures: Yup.array(),
-  queryLatency: Yup.number().integer('Must be an integer'),
+  queryLatency: Yup.number().integer('Must be an integer').nullable(),
   timeline: Yup.string(),
   additionalNotes: Yup.string(),
 });
@@ -36,18 +36,16 @@ export default function Home() {
 
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
-      console.log("values")
-      console.log(values)
-      // const response = await fetch('/api/prospect', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(values),
-      // });
+      const response = await fetch('/api/prospect', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(values),
+      });
 
-      // if (!response.ok) throw new Error('Failed to submit');
+      if (!response.ok) throw new Error('Failed to submit');
 
-      // const data = await response.json();
-      // setResults(data);
+      const data = await response.json();
+      setResults(data);
     } catch (error) {
       toast({
         title: 'An error occurred.',
@@ -81,7 +79,7 @@ export default function Home() {
                 cloudProvider: '',
                 techStack: [],
                 dataVolume: '',
-                isNewApp: '',
+                isNewApp: null,
                 keyFeatures: [],
                 queryLatency: 0,
                 timeline: '',
