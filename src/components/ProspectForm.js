@@ -7,12 +7,15 @@ import {
   Select,
   Checkbox,
   NumberInput,
+  NumberInputStepper,
   NumberInputField,
+  NumberIncrementStepper,
+  NumberDecrementStepper,
   Textarea,
   CheckboxGroup,
   SimpleGrid,
 } from '@chakra-ui/react';
-import { Field, useField } from 'formik';
+import { Field } from 'formik';
 
 const ProspectForm = () => {
   return (
@@ -67,17 +70,22 @@ const ProspectForm = () => {
         </Field>
       </FormControl>
 
-      <FormControl isRequired>
-        <FormLabel>Tech Stack</FormLabel>
-        <Field name="techStack" as={CheckboxGroup}>
-          {({ field }) => (
-            <SimpleGrid columns={3} spacing={2}>
-              {['MYSQL', 'POSTGRES', 'ORACLE', 'SQL_SERVER', 'MARIA_DB', 'AURORA', 'DYNAMO_DB', 'SPANNER', 'TERADATA', 'COUCHBASE', 'MONGO_DB', 'IBM_DB2', 'CASSANDRA', 'ELASTICSEARCH', 'REDIS', 'KAFKA', 'KUBERNETES', 'DOCKER', 'OTHER', 'NA'].map((tech) => (
-                <Checkbox key={tech} {...field} value={tech}>
-                  {tech.replace('_', ' ')}
-                </Checkbox>
-              ))}
-            </SimpleGrid>
+      <FormControl>
+        <FormLabel>Tech Stack (Optional)</FormLabel>
+        <Field name="techStack">
+          {({ field, form }) => (
+            <CheckboxGroup
+              {...field}
+              onChange={(values) => form.setFieldValue('techStack', values)}
+            >
+              <SimpleGrid columns={3} spacing={2}>
+                {['MYSQL', 'POSTGRES', 'ORACLE', 'SQL_SERVER', 'MARIA_DB', 'AURORA', 'DYNAMO_DB', 'SPANNER', 'TERADATA', 'COUCHBASE', 'MONGO_DB', 'IBM_DB2', 'CASSANDRA', 'ELASTICSEARCH', 'REDIS', 'KAFKA', 'KUBERNETES', 'DOCKER', 'OTHER'].map((tech) => (
+                  <Checkbox key={tech} value={tech}>
+                    {tech.replace('_', ' ')}
+                  </Checkbox>
+                ))}
+              </SimpleGrid>
+            </CheckboxGroup>
           )}
         </Field>
       </FormControl>
@@ -94,7 +102,7 @@ const ProspectForm = () => {
       </FormControl>
 
       <FormControl>
-        <FormLabel>Is this a new application?</FormLabel>
+        <FormLabel>Is this for a new application?</FormLabel>
         <Field name="isNewApp" as={Select}>
           <option value="">Select an option</option>
           <option value="true">Yes</option>
@@ -103,7 +111,7 @@ const ProspectForm = () => {
       </FormControl>
 
       <FormControl>
-        <FormLabel>Key Features</FormLabel>
+        <FormLabel>Required Features</FormLabel>
         <Field name="keyFeatures" as={CheckboxGroup}>
           {({ field }) => (
             <SimpleGrid columns={3} spacing={2}>
@@ -118,11 +126,23 @@ const ProspectForm = () => {
       </FormControl>
 
       <FormControl isRequired>
-        <FormLabel>Query Latency (ms)</FormLabel>
+        <FormLabel>Minimum Acceptable Query Latency (ms)</FormLabel>
         <Field name="queryLatency">
-          {({ field }) => (
-            <NumberInput min={0} {...field}>
+          {({ field, form }) => (
+            <NumberInput
+              {...field}
+              min={1}
+              step={1}
+              precision={0}
+              onChange={(valueString, valueNumber) => {
+                form.setFieldValue(field.name, valueNumber);
+              }}
+            >
               <NumberInputField />
+              <NumberInputStepper>
+                <NumberIncrementStepper />
+                <NumberDecrementStepper />
+              </NumberInputStepper>
             </NumberInput>
           )}
         </Field>

@@ -21,12 +21,12 @@ const validationSchema = Yup.object({
   role: Yup.string().required('Required'),
   dataWorkloadType: Yup.string().required('Required'),
   cloudProvider: Yup.string().required('Required'),
-  techStack: Yup.array().min(1, 'Select at least one'),
-  dataVolume: Yup.string().required('Required'),
+  techStack: Yup.array(),
+  dataVolume: Yup.string(),
   isNewApp: Yup.boolean().nullable(),
   keyFeatures: Yup.array(),
-  queryLatency: Yup.number().required('Required').min(0, 'Must be non-negative'),
-  timeline: Yup.string().required('Required'),
+  queryLatency: Yup.number().min(0, 'Must be at least 1 ms').integer('Must be an integer'),
+  timeline: Yup.string(),
   additionalNotes: Yup.string(),
 });
 
@@ -36,16 +36,18 @@ export default function Home() {
 
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
-      const response = await fetch('/api/prospect', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(values),
-      });
+      console.log("values")
+      console.log(values)
+      // const response = await fetch('/api/prospect', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify(values),
+      // });
 
-      if (!response.ok) throw new Error('Failed to submit');
+      // if (!response.ok) throw new Error('Failed to submit');
 
-      const data = await response.json();
-      setResults(data);
+      // const data = await response.json();
+      // setResults(data);
     } catch (error) {
       toast({
         title: 'An error occurred.',
@@ -79,7 +81,7 @@ export default function Home() {
                 cloudProvider: '',
                 techStack: [],
                 dataVolume: '',
-                isNewApp: null,
+                isNewApp: '',
                 keyFeatures: [],
                 queryLatency: 0,
                 timeline: '',
