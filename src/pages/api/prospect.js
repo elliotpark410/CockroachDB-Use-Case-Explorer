@@ -15,7 +15,7 @@ export default async function handler(req, res) {
       });
 
       // Match customer story
-      const customerStory = await matchCustomerStory(prospectData);
+      const customerStories = await matchCustomerStory(prospectData);
 
       // Calculate fit score
       const fitScore = calculateScore(prospectData);
@@ -23,7 +23,21 @@ export default async function handler(req, res) {
       // Get score explanation
       const scoreExplanation = getScoreExplanation(fitScore, prospectData);
 
-      res.status(200).json({ prospect, customerStory, fitScore, scoreExplanation });
+      const saveResult = await prisma.result.create({
+        data: {
+          prospectId: prospect.id,
+          score: fitScore,
+          customerStoryId: customerStories[0]?.id,
+          prospect: {
+            connect: { id: prospect.id }
+          },
+          customerStory: customerStories[0]?.id
+            ? { connect: { id: customerStories[0].id } }
+            : undefined
+        },
+      });
+
+      res.status(200).json({ prospect, customerStories, fitScore, scoreExplanation, resultId: saveResult.id });
     } catch (error) {
       console.error('Error processing prospect data:', error);
       res.status(500).json({ error: 'Error processing prospect data' });

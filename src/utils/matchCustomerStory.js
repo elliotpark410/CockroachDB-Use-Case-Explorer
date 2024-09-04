@@ -33,7 +33,7 @@ export async function matchCustomerStory(prospectData) {
       keyFeatures: selectedFeatures,
       solution: 'Implemented CockroachDB as their central database for their order management platform, leveraging its scalability, high availability, and ability to handle over a billion records with zero downtime".',
       challenge: 'Scaling order, shipment, and tracking data into the billions while maintaining high availability and performance, especially during peak seasons like Black Friday',
-      matchScore: 0,
+      matchScore: 1,
     }];
   }
 
