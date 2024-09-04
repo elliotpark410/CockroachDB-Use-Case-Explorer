@@ -18,13 +18,13 @@ model Prospect {
   role             String?
   dataWorkloadType DataWorkload
   cloudProvider    CloudProvider
-  techStack        TechStack[]
-  dataVolume       String?
   isNewApp         Boolean?
-  keyFeatures      Features[]
   queryLatency     Int
   additionalNotes  String?
   timeline         String
+  dataVolume       String?
+  techStack        TechStack[]
+  keyFeatures      Features[]
   result           Result?
 }
 
@@ -35,23 +35,23 @@ model CustomerStory {
   companyName   String         @unique
   industry      String
   cloudProvider CloudProvider?
-  techStack     TechStack[]
   useCase       String?
+  techStack     TechStack[]
   challenge     String?
-  solution      String?
   keyFeatures   Features[]
+  solution      String?
   results       Result[]
 }
 
 model Result {
-  id               String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  createdAt        DateTime       @default(now())
-  updatedAt        DateTime       @updatedAt
-  prospectId       String         @unique @db.Uuid
-  score            Int?
-  customerStoryId  String?        @db.Uuid
-  customerStory    CustomerStory? @relation(fields: [customerStoryId], references: [id])
-  prospect         Prospect       @relation(fields: [prospectId], references: [id])
+  id              String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+  prospectId      String         @unique @db.Uuid
+  score           Int?
+  customerStoryId String?        @db.Uuid
+  customerStory   CustomerStory? @relation(fields: [customerStoryId], references: [id])
+  prospect        Prospect       @relation(fields: [prospectId], references: [id])
 }
 
 enum DataWorkload {
@@ -88,10 +88,10 @@ enum TechStack {
   ELASTICSEARCH
   REDIS
   KAFKA
-  KUBERNETES
-  DOCKER
   OTHER
   NA
+  KUBERNETES
+  DOCKER
 }
 
 enum Features {
