@@ -1,10 +1,29 @@
 import React from 'react';
-import { Box, VStack, Heading, Text, List, ListItem, ListIcon, Badge } from '@chakra-ui/react';
-import { CheckIcon } from '@chakra-ui/react';
-import CustomerStory from './CustomerStory';
+import { Box, VStack, Heading, Text, List, ListItem, Badge, SimpleGrid } from '@chakra-ui/react';
+import { CheckIcon } from '@chakra-ui/icons';
+
+const CustomerStory = ({ story }) => (
+  <Box borderWidth="1px" borderRadius="lg" p={4} mb={4}>
+    <Heading size="md">{story.companyName}</Heading>
+    <Badge colorScheme="blue" mt={2}>{story.industry}</Badge>
+    <Text mt={2}><strong>Use Case:</strong> {story.useCase}</Text>
+    <Text mt={2}><strong>Challenge:</strong> {story.challenge}</Text>
+    <Text mt={2}><strong>Solution:</strong> {story.solution}</Text>
+    <SimpleGrid columns={2} spacing={2} mt={2}>
+      {story.keyFeatures.map((feature, index) => (
+        <Badge key={index} colorScheme="green">
+          <CheckIcon mr={1} />
+          {feature.replace('_', ' ')}
+        </Badge>
+      ))}
+    </SimpleGrid>
+  </Box>
+);
 
 const Results = ({ data }) => {
-  const { score, helpfulFeatures, matchingCustomerStories } = data;
+  const { score, matchedStories } = data;
+
+  console.log(matchedStories)
 
   return (
     <VStack spacing={6} align="stretch">
@@ -16,22 +35,12 @@ const Results = ({ data }) => {
       </Box>
 
       <Box>
-        <Heading size="md">Key CockroachDB Features for Your Use Case</Heading>
-        <List spacing={3} mt={2}>
-          {helpfulFeatures.map((feature, index) => (
-            <ListItem key={index}>
-              <ListIcon as={CheckIcon} color="green.500" />
-              {feature}
-            </ListItem>
-          ))}
-        </List>
-      </Box>
-
-      <Box>
         <Heading size="md">Matching Customer Stories</Heading>
         <List spacing={4} mt={2}>
-          {matchingCustomerStories.map((story, index) => (
-            <CustomerStory key={index} story={story} />
+          {matchedStories.map((story, index) => (
+            <ListItem key={index}>
+              <CustomerStory story={story} />
+            </ListItem>
           ))}
         </List>
       </Box>

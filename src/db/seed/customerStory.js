@@ -1,5 +1,5 @@
 import { TechStack, CloudProvider, Features } from "@prisma/client";
-import prisma from "../../lib/prisma";
+import prisma from "../../lib/prisma.js";
 
 const customerStories = [
   {
@@ -23,7 +23,7 @@ const customerStories = [
     useCase: "Supporting their online sports betting platform with consitency and high availability",
     challenge: "Expanding online gaming operations while ensuring low latency, high availability, and compliance with various regional regulations",
     solution: "Successfully launched a global gaming platform over 4 states and regions, with a hybrid deployment, consuming over 30,000 transactions per second, and achieved compliance across multiple jurisdictions",
-    requiredFeatures: [
+    keyFeatures: [
       Features.HIGH_AVAILABILITY,
       Features.CONSISTENCY,
       Features.DATA_COMPLIANCE,
@@ -37,7 +37,7 @@ const customerStories = [
     useCase: "They provide same-day delivery services. Building a highly available, distributed payment system designed for correctness to support same-day delivery services across the United States",
     challenge: "Developing a multi-region payment service that ensures transaction correctness, concurrency control, and high availability while processing millions of transactions daily",
     solution: "Implemented CockroachDB Dedicated as the foundation for their distributed payment system, leveraging its multi-region capabilities, ACID transactions, and automated replication to processes 1-2 million transactions per day with 99.999% uptime over 4 regions",
-    requiredFeatures: [
+    keyFeatures: [
       Features.SCALABILITY,
       Features.MULTI_REGION,
       Features.HIGH_AVAILABILITY,
@@ -51,7 +51,7 @@ const customerStories = [
     useCase: "Real-time data store for order management, package tracking, and shipping protection across billions of e-commerce orders",
     challenge: "Scaling order, shipment, and tracking data into the billions while maintaining high availability and performance, especially during peak seasons like Black Friday",
     solution: "Implemented CockroachDB as their central database for their order management platform, leveraging its scalability, high availability, and ability to handle over a billion records with zero downtime",
-    requiredFeatures: [
+    keyFeatures: [
       Features.SCALABILITY,
       Features.HIGH_AVAILABILITY,
     ]
