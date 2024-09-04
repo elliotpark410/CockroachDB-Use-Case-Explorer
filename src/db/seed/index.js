@@ -1,7 +1,13 @@
 import { customerStories } from "./customerStories.js";
 import prisma from "../../lib/prisma.js";
 
-async function customerStory() {
+async function deleteExistingCustomerStories() {
+  console.log("Deleting existing customer stories...");
+  await prisma.customerStory.deleteMany({});
+  console.log("All existing customer stories deleted.");
+}
+
+async function addCustomerStory() {
   console.log(`Start seeding ...`);
   for (const story of customerStories) {
     const customerStory = await prisma.customerStory.create({
@@ -14,7 +20,8 @@ async function customerStory() {
 
 async function main() {
   try {
-    await customerStory();
+    await deleteExistingCustomerStories();
+    await addCustomerStory();
   } catch (error) {
     console.error("Error:", error);
     process.exit(1);
