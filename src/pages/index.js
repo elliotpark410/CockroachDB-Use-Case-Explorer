@@ -15,17 +15,17 @@ import Results from '../components/Results';
 
 const validationSchema = Yup.object({
   contactName: Yup.string().required('Required'),
-  email: Yup.string().email('Invalid email').required('Required'),
+  email: Yup.string().email('Invalid email'),
   companyName: Yup.string().required('Required'),
-  industry: Yup.string().required('Required'),
-  role: Yup.string().required('Required'),
+  industry: Yup.string(),
+  role: Yup.string(),
   dataWorkloadType: Yup.string().required('Required'),
   cloudProvider: Yup.string().required('Required'),
   techStack: Yup.array(),
   dataVolume: Yup.string(),
   isNewApp: Yup.boolean().nullable(),
   keyFeatures: Yup.array(),
-  queryLatency: Yup.number().min(0, 'Must be at least 1 ms').integer('Must be an integer'),
+  queryLatency: Yup.number().integer('Must be an integer'),
   timeline: Yup.string(),
   additionalNotes: Yup.string(),
 });
