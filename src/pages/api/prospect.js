@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import { matchCustomerStory } from '../../utils/matchCustomerStory';
-import { calculateScore } from '../../utils/calculateScore';
+import { calculateScore, getScoreExplanation } from '../../utils/calculateScore';
 
 const prisma = new PrismaClient();
 
@@ -20,7 +20,10 @@ export default async function handler(req, res) {
       // Calculate fit score
       const fitScore = calculateScore(prospectData);
 
-      res.status(200).json({ prospect, customerStory, fitScore });
+      // Get score explanation
+      const scoreExplanation = getScoreExplanation(fitScore, prospectData);
+
+      res.status(200).json({ prospect, customerStory, fitScore, scoreExplanation });
     } catch (error) {
       console.error('Error processing prospect data:', error);
       res.status(500).json({ error: 'Error processing prospect data' });

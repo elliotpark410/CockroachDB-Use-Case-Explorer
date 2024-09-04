@@ -60,13 +60,6 @@ export function calculateScore(prospectData) {
   return Math.min(normalizedScore, 100); // Ensure score doesn't exceed 100
 }
 
-export function getScoreCategory(score) {
-  if (score >= 80) return "Excellent fit";
-  if (score >= 60) return "Good fit";
-  if (score >= 40) return "Moderate fit";
-  return "May not be the best fit";
-}
-
 export function getScoreExplanation(score, prospectData) {
   let explanation = `Based on your input, CockroachDB appears to be a ${getScoreCategory(score)} for your use case. `;
 
