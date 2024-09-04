@@ -59,7 +59,7 @@ export default function Home() {
       <Box maxWidth="800px" margin="auto" padding={8}>
         <VStack spacing={8} align="stretch">
           <Heading as="h1" size="xl" textAlign="center">
-            CockroachDB Case Study Finder
+            Case Study Finder
           </Heading>
 
           {!results ? (
