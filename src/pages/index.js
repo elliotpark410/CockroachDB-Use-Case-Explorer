@@ -14,11 +14,6 @@ import ProspectForm from '../components/ProspectForm';
 import Results from '../components/Results';
 
 const validationSchema = Yup.object({
-  contactName: Yup.string().required('Required'),
-  email: Yup.string().email('Invalid email'),
-  companyName: Yup.string().required('Required'),
-  industry: Yup.string(),
-  role: Yup.string(),
   dataWorkloadType: Yup.string().required('Required'),
   cloudProvider: Yup.string().required('Required'),
   techStack: Yup.array(),
@@ -64,17 +59,12 @@ export default function Home() {
       <Box maxWidth="800px" margin="auto" padding={8}>
         <VStack spacing={8} align="stretch">
           <Heading as="h1" size="xl" textAlign="center">
-            CockroachDB Use Case Explorer
+            CockroachDB Case Study Finder
           </Heading>
 
           {!results ? (
             <Formik
               initialValues={{
-                contactName: '',
-                email: '',
-                companyName: '',
-                industry: '',
-                role: '',
                 dataWorkloadType: '',
                 cloudProvider: '',
                 techStack: [],

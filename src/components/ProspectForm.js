@@ -3,7 +3,6 @@ import {
   VStack,
   FormControl,
   FormLabel,
-  Input,
   Select,
   Checkbox,
   NumberInput,
@@ -25,31 +24,6 @@ const ProspectForm = () => {
 
   return (
     <VStack spacing={4} align="stretch">
-      <FormControl isRequired>
-        <FormLabel>Contact Name</FormLabel>
-        <Field name="contactName" as={Input} />
-      </FormControl>
-
-      <FormControl isRequired>
-        <FormLabel>Email</FormLabel>
-        <Field name="email" type="email" as={Input} />
-      </FormControl>
-
-      <FormControl isRequired>
-        <FormLabel>Company Name</FormLabel>
-        <Field name="companyName" as={Input} />
-      </FormControl>
-
-      <FormControl isRequired>
-        <FormLabel>Industry</FormLabel>
-        <Field name="industry" as={Input} />
-      </FormControl>
-
-      <FormControl isRequired>
-        <FormLabel>Role</FormLabel>
-        <Field name="role" as={Input} />
-      </FormControl>
-
       <FormControl isRequired>
         <FormLabel>Data Workload Type</FormLabel>
         <Field name="dataWorkloadType" as={Select}>
@@ -177,7 +151,7 @@ const ProspectForm = () => {
       </FormControl>
 
       <FormControl isRequired>
-        <FormLabel>Timeline</FormLabel>
+        <FormLabel>Project Completion Timeline?</FormLabel>
         <Field name="timeline" as={Select}>
           <option value="">Select a timeline</option>
           <option value="0-3 months">0-3 months</option>

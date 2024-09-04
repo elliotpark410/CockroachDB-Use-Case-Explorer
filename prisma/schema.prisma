@@ -11,11 +11,6 @@ model Prospect {
   id               String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   createdAt        DateTime      @default(now())
   updatedAt        DateTime      @updatedAt
-  contactName      String?
-  email            String?
-  companyName      String?
-  industry         String?
-  role             String?
   dataWorkloadType DataWorkload
   cloudProvider    CloudProvider
   isNewApp         Boolean?
