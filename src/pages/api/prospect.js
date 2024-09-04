@@ -26,13 +26,11 @@ export default async function handler(req, res) {
       const saveResult = await prisma.result.create({
         data: {
           score: fitScore,
+          relevantCustomerStories: customerStories.map(story => story.companyName),
           prospect: {
             connect: { id: prospect.id }
-          },
-          customerStory: customerStories[0]?.id
-            ? { connect: { id: customerStories[0].id } }
-            : undefined
-        },
+          }
+        }
       });
 
       res.status(200).json({ prospect, customerStories, fitScore, scoreExplanation, resultId: saveResult.id });
