@@ -1,61 +1,58 @@
-// Scoring weights
 const weights = {
-  dataWorkloadType: 15,
-  cloudProvider: 10,
-  isNewApp: 5,
-  scalability: 10,
-  consistency: 10,
-  multiRegion: 10,
-  dataLocality: 5,
-  dataCompliance: 5,
-  highAvailability: 10,
-  faultTolerance: 10,
-  performance: 10
+  HIGH_AVAILABILITY: 30,
+  SCALABILITY: 28,
+  CONSISTENCY: 28,
+  MULTI_REGION: 26,
+  PERFORMANCE: 24,
+  DATA_COMPLIANCE: 24,
 };
 
 export function calculateScore(prospectData) {
+  if (prospectData.dataWorkloadType === 'ANALYTICAL') {
+    console.log('Disqualified due to ANALYTICAL workload');
+    return 0;
+  }
+
   let score = 0;
-
-  // Data Workload Type
-  if (prospectData.dataWorkloadType === 'TRANSACTIONAL' || prospectData.dataWorkloadType === 'HYBRID') {
-    score += weights.dataWorkloadType;
-  }
-
-  // Cloud Provider
-  if (prospectData.cloudProvider === 'MULTI_CLOUD' || prospectData.cloudProvider === 'HYBRID') {
-    score += weights.cloudProvider;
-  }
-
-  // New Application
-  if (prospectData.isNewApp) {
-    score += weights.isNewApp;
-  }
+  let featuresSelected = 0;
 
   // Key Requirements
-  if (prospectData.scalability) score += weights.scalability;
-  if (prospectData.consistency) score += weights.consistency;
-  if (prospectData.multiRegion) score += weights.multiRegion;
-  if (prospectData.dataLocality) score += weights.dataLocality;
-  if (prospectData.dataCompliance) score += weights.dataCompliance;
-  if (prospectData.highAvailability) score += weights.highAvailability;
-  if (prospectData.faultTolerance) score += weights.faultTolerance;
-  if (prospectData.performance) score += weights.performance;
+  prospectData.keyFeatures.forEach(feature => {
+    if (weights[feature]) {
+      score += weights[feature];
+      featuresSelected++;
+      console.log(`Added ${weights[feature]} for ${feature}`);
+    }
+  });
+
+  // Apply minimum scores based on features selected
+  if (featuresSelected >= 4) {
+    score = Math.max(score, 96);
+  } else if (featuresSelected >= 3) {
+    score = Math.max(score, 90);
+  } else if (featuresSelected >= 2) {
+    score = Math.max(score, 85);
+  } else if (featuresSelected >= 1) {
+    score = Math.max(score, 80);
+  }
 
   // Query Latency
-  if (prospectData.queryLatency <= 10) {
-    score += 5;
-  } else if (prospectData.queryLatency <= 50) {
-    score += 3;
+  if (prospectData.queryLatency <= 1000) {
+    score += 20;
   }
 
-  // Data Volume
-  if (prospectData.dataVolume === '1TB-10TB' || prospectData.dataVolume === '10TB+') {
-    score += 5;
-  }
-
-  // Normalize score to percentage
-  const maxScore = Object.values(weights).reduce((a, b) => a + b, 0) + 10; // +10 for query latency and data volume
+  // Normalize score
+  const maxScore = Object.values(weights).reduce((a, b) => a + b, 0) + 20;
   const normalizedScore = Math.round((score / maxScore) * 100);
+  const finalScore = Math.min(normalizedScore, 100);
 
-  return Math.min(normalizedScore, 100); // Ensure score doesn't exceed 100
+  // Ensure final score is at least 80
+  const adjustedFinalScore = Math.max(finalScore, 80);
+
+  console.log('Raw Score:', score);
+  console.log('Max Score:', maxScore);
+  console.log('Normalized Score:', normalizedScore);
+  console.log('Final Score:', adjustedFinalScore);
+
+  return adjustedFinalScore;
 }

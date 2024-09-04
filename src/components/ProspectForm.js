@@ -141,7 +141,7 @@ const ProspectForm = () => {
               onChange={(values) => setFieldValue('keyFeatures', values)}
             >
               <SimpleGrid columns={3} spacing={2}>
-                {['SCALABILITY', 'CONSISTENCY', 'MULTI_REGION', 'DATA_LOCALITY', 'DATA_COMPLIANCE', 'HIGH_AVAILABILITY', 'FAULT_TOLERANCE', 'PERFORMANCE', 'MULTI_CLOUD'].map((feature) => (
+                {['SCALABILITY', 'CONSISTENCY', 'MULTI_REGION', 'DATA_COMPLIANCE', 'HIGH_AVAILABILITY', 'PERFORMANCE', 'MULTI_CLOUD'].map((feature) => (
                   <Checkbox key={feature} value={feature}>
                     {feature.replace('_', ' ')}
                   </Checkbox>

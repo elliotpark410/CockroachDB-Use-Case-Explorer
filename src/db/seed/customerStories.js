@@ -11,7 +11,6 @@ export const customerStories = [
     solution: "Successfully scaled device management and testing capabilities, ensuring high-quality streaming experience across hundreds of device types",
     keyFeatures: [
       Features.SCALABILITY,
-      Features.FAULT_TOLERANCE,
       Features.CONSISTENCY,
       Features.PERFORMANCE
     ]
@@ -28,12 +27,7 @@ export const customerStories = [
       Features.HIGH_AVAILABILITY,
       Features.CONSISTENCY,
       Features.DATA_COMPLIANCE,
-      Features.PERFORMANCE,
       Features.MULTI_REGION,
-      Features.SCALABILITY,
-      Features.DATA_LOCALITY,
-      Features.FAULT_TOLERANCE,
-      Features.MULTI_CLOUD
     ]
   },
   {
@@ -111,7 +105,6 @@ export const customerStories = [
       Features.CONSISTENCY,
       Features.MULTI_REGION,
       Features.DATA_COMPLIANCE,
-      Features.DATA_LOCALITY,
       Features.PERFORMANCE
     ]
   },
@@ -125,7 +118,6 @@ export const customerStories = [
     solution: "They created a multi-cloud platform built on CockroachDB, enabling global payment transactions with 100-200ms SLAs for global payment transactions",
     keyFeatures: [
       Features.SCALABILITY,
-      Features.FAULT_TOLERANCE,
       Features.MULTI_CLOUD,
       Features.CONSISTENCY,
       Features.PERFORMANCE,
