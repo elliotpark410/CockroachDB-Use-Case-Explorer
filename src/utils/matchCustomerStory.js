@@ -25,14 +25,20 @@ export async function matchCustomerStory(prospectData) {
   if (bestMatches.length === 0) {
     // If still no matches, return a generic story
     return [{
-      companyName: 'Route (Generic Company)',
-      industry: 'Logistics & Shipping',
-      cloudProvider: CloudProvider.AWS,
-      techStack: [TechStack.POSTGRES],
-      useCase: 'Real-time data store for order management, package tracking, and shipping protection across billions of e-commerce orders',
-      keyFeatures: selectedFeatures,
-      solution: 'Implemented CockroachDB as their central database for their order management platform, leveraging its scalability, high availability, and ability to handle over a billion records with zero downtime".',
-      challenge: 'Scaling order, shipment, and tracking data into the billions while maintaining high availability and performance, especially during peak seasons like Black Friday',
+      companyName: 'DoorDash',
+      industry: 'Food Delivery',
+      cloudProvider: CloudProvider.MULTI_CLOUD,
+      techStack: [TechStack.AURORA],
+      useCase: 'Needed a fault-toleranta and scalable distributed database that will not fail during peak seasons',
+      challenge: 'Aurora was not able to scale during peak business days',
+      solution: 'Manages over 300 CockroachDB clusters, handling millions of queries per second and petabytes of data',
+      keyFeatures: [
+      Features.SCALABILITY,
+      Features.HIGH_AVAILABILITY,
+      Features.PERFORMANCE,
+      Features.CONSISTENCY,
+      Features.MULTI_REGION
+    ],
       matchScore: 1,
     }];
   }

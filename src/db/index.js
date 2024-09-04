@@ -23,16 +23,16 @@ async function fetchProspectData() {
   console.log('All prospects:', allProspects)
 }
 
-  async function main() {
-  try {
-    // await listDatabases();
-    // await showTables();
-    // await fetchProspectData();
-  } catch (error) {
-    console.error("Error:", error);
-  } finally {
-    await prisma.$disconnect();
-  }
-}
+//   async function main() {
+//   try {
+//     await listDatabases();
+//     await showTables();
+//     await fetchProspectData();
+//   } catch (error) {
+//     console.error("Error:", error);
+//   } finally {
+//     await prisma.$disconnect();
+//   }
+// }
 
-main();
+// main();

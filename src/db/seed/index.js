@@ -18,16 +18,16 @@ async function addCustomerStory() {
   console.log(`Seeding finished.`);
 }
 
-async function main() {
-  try {
-    await deleteExistingCustomerStories();
-    await addCustomerStory();
-  } catch (error) {
-    console.error("Error:", error);
-    process.exit(1);
-  } finally {
-    await prisma.$disconnect();
-  }
-}
+// async function main() {
+//   try {
+//     await deleteExistingCustomerStories();
+//     await addCustomerStory();
+//   } catch (error) {
+//     console.error("Error:", error);
+//     process.exit(1);
+//   } finally {
+//     await prisma.$disconnect();
+//   }
+// }
 
-main();
+// main();
