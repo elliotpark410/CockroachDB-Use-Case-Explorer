@@ -49,8 +49,8 @@ model Result {
   updatedAt        DateTime       @updatedAt
   prospectId       String         @unique @db.Uuid
   score            Int?
-  relevantCustomer String?
-  customerStory    CustomerStory? @relation(fields: [relevantCustomer], references: [companyName])
+  customerStoryId  String?        @db.Uuid
+  customerStory    CustomerStory? @relation(fields: [customerStoryId], references: [id])
   prospect         Prospect       @relation(fields: [prospectId], references: [id])
 }
 
