@@ -29,7 +29,11 @@ export const customerStories = [
       Features.CONSISTENCY,
       Features.DATA_COMPLIANCE,
       Features.PERFORMANCE,
-      Features.MULTI_REGION
+      Features.MULTI_REGION,
+      Features.SCALABILITY,
+      Features.DATA_LOCALITY,
+      Features.FAULT_TOLERANCE,
+      Features.MULTI_CLOUD
     ]
   },
   {
