@@ -81,7 +81,7 @@ export const customerStories = [
     industry: "Food Delivery",
     cloudProvider: CloudProvider.MULTI_CLOUD,
     techStack: [TechStack.AURORA],
-    useCase: 'Looking for a fault-toleranta and scalable distributed database that will not fail during peak seasons',
+    useCase: 'Looking for a fault-tolerant and scalable distributed database that will not fail during peak seasons',
     challenge: 'Aurora was not able to scale and it would crash during peak seasons leading to hours of downtime',
     solution: 'Implemented CockroachDB for its resilience. They are doing 1.2 million queries per second at daily peak hours, 1.9 petabytes of data on disk, and managing over 300 CockroachDB clusters',
     keyFeatures: [

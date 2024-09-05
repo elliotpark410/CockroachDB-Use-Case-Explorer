@@ -29,7 +29,7 @@ export async function matchCustomerStory(prospectData) {
       industry: 'Food Delivery',
       cloudProvider: CloudProvider.MULTI_CLOUD,
       techStack: [TechStack.AURORA],
-      useCase: 'Needed a fault-toleranta and scalable distributed database that will not fail during peak seasons',
+      useCase: 'Needed a fault-tolerant and scalable distributed database that will not fail during peak seasons',
       challenge: 'Aurora was not able to scale during peak business days',
       solution: 'Manages over 300 CockroachDB clusters, handling millions of queries per second and petabytes of data',
       keyFeatures: [
