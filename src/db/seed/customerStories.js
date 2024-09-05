@@ -53,7 +53,7 @@ export const customerStories = [
     techStack: [TechStack.POSTGRES],
     useCase: "Real-time data store for order management, package tracking, and shipping protection across billions of e-commerce orders",
     challenge: "Scaling order, shipment, and tracking data while maintaining high availability and performance, especially during days like Black Friday",
-    solution: "Implemented CockroachDB as their system of record to handle over a billion records with zero downtime, even during peak seasons",
+    solution: "Implemented CockroachDB as their system of record to handle over a billion records with zero downtime, even during peak seasons. They actually had an issue where their cloud provider called them about a hardware failure when they were using CockroachDB. There was no data loss and no downtime",
     keyFeatures: [
       Features.SCALABILITY,
       Features.HIGH_AVAILABILITY,
