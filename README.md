@@ -2,15 +2,14 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 A simple form that returns CockroachDB case studies and scoring based on prospect information
 
-Vercel link!!!
+[https://cockroach-db-case-study-explorer.vercel.app/](https://cockroach-db-case-study-explorer.vercel.app/)
 
 # Technologies Used
 
 * React/Next: For building the user interface.
-* JavaScript: The main programming language for the frontend.
-* Node.js: For the backend server.
-* CockroachDB Serverless: The database used for storing application data.
-* Vercel: For domain hosting.
+* JavaScript: The main programming language for building frontend and backend.
+* CockroachDB: Serverless database used for storing application data.
+* Vercel: For hosting serverless deployment.
 * dotenv: For environment variables.
 
 # Author
