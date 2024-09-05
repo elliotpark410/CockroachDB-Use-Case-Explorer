@@ -19,8 +19,26 @@ export async function matchCustomerStory(prospectData) {
   // Sort stories by match score (descending)
   scoredStories.sort((a, b) => b.matchScore - a.matchScore);
 
-  // Select the top 2 matches
-  const bestMatches = scoredStories.slice(0, 2);
+   // Find all stories with the highest match score
+   const highestScore = scoredStories[0].matchScore;
+   const topMatches = scoredStories.filter(story => story.matchScore === highestScore);
+
+   let bestMatches;
+
+   if (topMatches.length > 2) {
+     // Randomly select 2 stories from the top matches
+     bestMatches = [];
+     const indexes = new Set();
+     while (indexes.size < 2) {
+       indexes.add(Math.floor(Math.random() * topMatches.length));
+     }
+     for (let index of indexes) {
+       bestMatches.push(topMatches[index]);
+     }
+   } else {
+     // If there are 2 or fewer top matches, use all of them
+     bestMatches = topMatches;
+   }
 
   if (bestMatches.length === 0) {
     // If still no matches, return a generic story
