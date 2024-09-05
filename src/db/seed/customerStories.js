@@ -190,4 +190,19 @@ export const customerStories = [
       Features.MULTI_REGION
     ]
   },
+  {
+    companyName: "Devsisters",
+    industry: "Video Game Development",
+    cloudProvider: CloudProvider.AWS,
+    techStack: [TechStack.POSTGRES],
+    useCase: "Building a scalable backend for their mobile game Cookie Run which ash over 150 million downloads",
+    challenge: "Scaling database infrastructure to handle unexpected growth, heavy traffic, and maintain consistency for a globally distributed game",
+    solution: "Implemented CockroachDB to support their event sourcing architecture and handle 8 million monthly active users that create 60,000 transactions per second and 360,000 concurrent users at peak times",
+    keyFeatures: [
+      Features.SCALABILITY,
+      Features.HIGH_AVAILABILITY,
+      Features.PERFORMANCE,
+      Features.CONSISTENCY
+    ]
+  },
 ];
