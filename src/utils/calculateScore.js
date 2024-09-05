@@ -43,8 +43,8 @@ export function calculateScore(prospectData) {
     }
   });
 
-  // Ensure final score is between 0 and 100
-  const finalScore = Math.min(Math.max(score, 0), 100);
+  // Ensure final score is between 0 and 99
+  const finalScore = Math.min(Math.max(score, 0), 99);
 
   return finalScore;
 }
