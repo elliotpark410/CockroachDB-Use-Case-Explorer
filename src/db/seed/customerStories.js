@@ -205,4 +205,42 @@ export const customerStories = [
       Features.CONSISTENCY
     ]
   },
+  {
+    companyName: "Stake",
+    industry: "Financial Services",
+    cloudProvider: CloudProvider.MULTI_CLOUD,
+    techStack: [TechStack.POSTGRES, TechStack.KUBERNETES, TechStack.DOCKER],
+    useCase: "Online trading platform providing access to U.S. and Australian stock markets for global customers",
+    challenge: "Experiencing downtime and performance issues during high-volume trading events, inability to scale horizontally, and difficulties in global expansion due to database limitations",
+    solution: "Migrated from Amazon RDS for PostgreSQL to CockroachDB, enabling horizontal scaling, multi-region deployment, and improved performance. This allowed Stake to handle high-frequency trading volumes and expand globally while maintaining data consistency and compliance.",
+    keyFeatures: [
+      Features.SCALABILITY,
+      Features.CONSISTENCY,
+      Features.MULTI_REGION,
+      Features.DATA_LOCALITY,
+      Features.HIGH_AVAILABILITY,
+      Features.FAULT_TOLERANCE,
+      Features.PERFORMANCE,
+      Features.MULTI_CLOUD
+    ]
+  },
+  {
+    companyName: "Mux",
+    industry: "Video Streaming Technology",
+    cloudProvider: CloudProvider.MULTI_CLOUD,
+    techStack: [TechStack.POSTGRES],
+    useCase: "Video metadata management and streaming platform for developers building high-quality live and on-demand video experiences",
+    challenge: "Needed a database solution that could support multi-cloud deployments, ensure high availability, provide fast data retrieval for distributed customers, and comply with data privacy regulations like GDPR",
+    solution: "Migrated from PostgreSQL to CockroachDB, leveraging its multi-region deployment capabilities and geo-partitioning features. This allowed Mux to achieve high availability, low latency, and flexibility across multiple cloud providers while maintaining data compliance.",
+    keyFeatures: [
+      Features.SCALABILITY,
+      Features.CONSISTENCY,
+      Features.MULTI_REGION,
+      Features.DATA_LOCALITY,
+      Features.DATA_COMPLIANCE,
+      Features.HIGH_AVAILABILITY,
+      Features.PERFORMANCE,
+      Features.MULTI_CLOUD
+    ]
+  }
 ];
