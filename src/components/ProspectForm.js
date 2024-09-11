@@ -12,23 +12,23 @@ import {
   NumberDecrementStepper,
   Textarea,
   SimpleGrid,
-  RadioGroup,
-  Radio,
   Box,
+  Text
 } from '@chakra-ui/react';
 import { Field, useFormikContext } from 'formik';
 
-const CustomFormControl = ({ children, label, required }) => (
+const CustomFormControl = ({ children, label, required, error }) => (
   <FormControl mb={6}>
     <FormLabel>
       {label} {required && <span style={{ color: 'red' }}>*</span>}
     </FormLabel>
     {children}
+    {error && <Text color="red.500" fontSize="sm">{error}</Text>}
   </FormControl>
 );
 
 const ProspectForm = () => {
-  const { values, setFieldValue } = useFormikContext();
+  const { values, setFieldValue, errors, touched } = useFormikContext();
 
   return (
       <Box maxW="4xl" mx="auto" bg="white" boxShadow="xl" rounded="lg" overflow="hidden">
@@ -46,7 +46,7 @@ const ProspectForm = () => {
             </Field>
           </CustomFormControl>
 
-          <CustomFormControl label="Cloud Provider" required>
+          <CustomFormControl label="Cloud Provider" required error={touched.cloudProvider && errors.cloudProvider}>
             <Field name="cloudProvider" as={Select} placeholder="Select a cloud provider">
               <option value="AWS">AWS</option>
               <option value="GCP">GCP</option>
@@ -58,7 +58,7 @@ const ProspectForm = () => {
             </Field>
           </CustomFormControl>
 
-          <CustomFormControl label="Tech Stack">
+          <CustomFormControl label="Tech Stack" error={touched.techStack && errors.techStack}>
             <Field name="techStack">
               {({ field }) => (
                 <SimpleGrid columns={[2, 3, 4]} spacing={4}>
@@ -95,7 +95,7 @@ const ProspectForm = () => {
             </Field>
           </CustomFormControl>
 
-          <CustomFormControl label="Required Features">
+          <CustomFormControl label="Required Features" error={touched.keyFeatures && errors.keyFeatures}>
             <Field name="keyFeatures">
               {({ field }) => (
                 <SimpleGrid columns={[2, 3, 4]} spacing={4}>
@@ -147,7 +147,7 @@ const ProspectForm = () => {
         </Field>
       </FormControl>
 
-          <CustomFormControl label="Project Completion Timeline?" required>
+          <CustomFormControl label="Project Completion Timeline?" required error={touched.timeline && errors.timeline}>
             <Field name="timeline" as={Select} placeholder="Select a timeline">
               <option value="0-3 months">0-3 months</option>
               <option value="3-6 months">3-6 months</option>

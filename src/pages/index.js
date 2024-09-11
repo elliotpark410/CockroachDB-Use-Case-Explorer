@@ -14,11 +14,11 @@ import ProspectForm from '../components/ProspectForm';
 import Results from '../components/Results';
 
 const validationSchema = Yup.object({
-  dataWorkloadType: Yup.string().required('Required'),
-  cloudProvider: Yup.string().required('Required'),
-  techStack: Yup.array(),
+  dataWorkloadType: Yup.string().required('Data Workload Type is required'),
+  cloudProvider: Yup.string().required('Cloud Provider is required'),
+  techStack: Yup.array().min(1, 'At least one Tech Stack option must be selected'),
   dataVolume: Yup.string(),
-  keyFeatures: Yup.array(),
+  keyFeatures: Yup.array().min(1, 'At least one Key Feature must be selected'),
   queryLatency: Yup.number().integer('Must be an integer').nullable(),
   timeline: Yup.string(),
   additionalNotes: Yup.string(),
