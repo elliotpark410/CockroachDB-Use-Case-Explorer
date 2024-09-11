@@ -181,7 +181,7 @@ const ProspectForm = () => {
 
         <FormControl>
           <FormLabel>
-            Service Level Agreements for query response times (ms)
+            Acceptable query response times (ms)
           </FormLabel>
           <Field name="queryLatency">
             {({ field }) => (
