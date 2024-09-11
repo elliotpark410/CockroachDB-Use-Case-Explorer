@@ -10,10 +10,13 @@ const weights = {
 
 const techStackBonus = {
   POSTGRES: 5,
-  DOCKER: 4,
-  KAFKA: 3,
-  MYSQL: 3,
+  DOCKER: 5,
+  KAFKA: 5,
+  KUBERNETES: 5,
+  MYSQL: 5,
 };
+
+const keyFeatures = ['HIGH_AVAILABILITY', 'SCALABILITY', 'CONSISTENCY'];
 
 export function calculateScore(prospectData) {
   if (prospectData.dataWorkloadType === 'ANALYTICAL') {
@@ -22,18 +25,22 @@ export function calculateScore(prospectData) {
 
   let score = 0;
   let featuresSelected = 0;
+  let keyFeaturesSelected = 0;
 
   // Key Requirements
   prospectData.keyFeatures.forEach(feature => {
     if (weights[feature]) {
       score += weights[feature];
       featuresSelected++;
+      if (keyFeatures.includes(feature)) {
+        keyFeaturesSelected++;
+      }
     }
   });
 
-  // Query Latency
-  if (prospectData.queryLatency <= 1000) {
-    score += 5;
+  // Ensure minimum 80% score if at least 2 key features are selected
+  if (keyFeaturesSelected >= 2) {
+    score = Math.max(score, 80);
   }
 
   // Tech Stack Bonus
