@@ -80,6 +80,7 @@ const ProspectForm = () => {
         <CustomFormControl
           label="Tech Stack"
           error={touched.techStack && errors.techStack}
+          required
         >
           <Field name="techStack">
             {({ field }) => (
@@ -131,7 +132,7 @@ const ProspectForm = () => {
           </Field>
         </CustomFormControl>
 
-        <CustomFormControl label="Data Volume" required>
+        <CustomFormControl label="Data Volume">
           <Field name="dataVolume" as={Select} placeholder="Select data volume">
             <option value="0-100GB">0-100GB</option>
             <option value="100GB-1TB">100GB-1TB</option>
@@ -142,6 +143,7 @@ const ProspectForm = () => {
 
         <CustomFormControl
           label="Required Features"
+          required
           error={touched.keyFeatures && errors.keyFeatures}
         >
           <Field name="keyFeatures">
@@ -207,7 +209,6 @@ const ProspectForm = () => {
 
         <CustomFormControl
           label="Project Completion Timeline?"
-          required
           error={touched.timeline && errors.timeline}
         >
           <Field name="timeline" as={Select} placeholder="Select a timeline">
