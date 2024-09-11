@@ -88,17 +88,13 @@ const ProspectForm = () => {
                   'AURORA',
                   'CASSANDRA',
                   'COUCHBASE',
-                  'DOCKER',
                   'DYNAMO_DB',
                   'ELASTICSEARCH',
                   'IBM_DB2',
-                  'KAFKA',
-                  'KUBERNETES',
                   'MARIA_DB',
                   'MONGO_DB',
                   'MYSQL',
                   'ORACLE',
-                  'OTHER',
                   'POSTGRES',
                   'REDIS',
                   'SCYLLA_DB',
@@ -107,6 +103,10 @@ const ProspectForm = () => {
                   'TERADATA',
                   'TI_DB',
                   'YUGABYTE_DB',
+                  'DOCKER',
+                  'KUBERNETES',
+                  'KAFKA',
+                  'OTHER',
                 ].map((tech) => (
                   <Checkbox
                     key={tech}
