@@ -78,14 +78,33 @@ export default function Home() {
               {({ isSubmitting }) => (
                 <Form>
                   <ProspectForm />
-                  <Button
-                    mt={4}
-                    colorScheme="blue"
-                    isLoading={isSubmitting}
-                    type="submit"
-                  >
-                    Submit
-                  </Button>
+                    <Box textAlign="center">
+                      <Button
+                        mt={8}
+                        mb={4}
+                        size="lg"
+                        height="60px"
+                        width="200px"
+                        colorScheme="blue"
+                        fontWeight="bold"
+                        fontSize="xl"
+                        boxShadow="lg"
+                        _hover={{
+                          bg: "blue.500",
+                          boxShadow: "xl",
+                          transform: "translateY(-2px)",
+                        }}
+                        _active={{
+                          bg: "blue.600",
+                          boxShadow: "md",
+                          transform: "translateY(0)",
+                        }}
+                        isLoading={isSubmitting}
+                        type="submit"
+                      >
+                        Submit
+                      </Button>
+                    </Box>
                 </Form>
               )}
             </Formik>
