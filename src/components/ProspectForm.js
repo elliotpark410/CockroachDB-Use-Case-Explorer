@@ -91,17 +91,6 @@ const ProspectForm = () => {
             </Field>
           </CustomFormControl>
 
-          <CustomFormControl label="Is this for a new application?">
-            <Field name="isNewApp">
-              {({ field }) => (
-                <RadioGroup {...field}>
-                  <Radio value="true" mr={4}>Yes</Radio>
-                  <Radio value="false">No</Radio>
-                </RadioGroup>
-              )}
-            </Field>
-          </CustomFormControl>
-
           <CustomFormControl label="Required Features">
             <Field name="keyFeatures">
               {({ field }) => (
