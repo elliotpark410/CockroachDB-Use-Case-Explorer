@@ -34,7 +34,11 @@ const ProspectForm = () => {
       <Box maxW="4xl" mx="auto" bg="white" boxShadow="xl" rounded="lg" overflow="hidden">
         <VStack spacing={6} align="stretch" p={8}>
           <CustomFormControl label="Data Workload Type" required>
-            <Field name="dataWorkloadType" as={Select} placeholder="Select a data workload type">
+            <Field
+              name="dataWorkloadType"
+              as={Select}
+              defaultValue="TRANSACTIONAL"
+            >
               <option value="TRANSACTIONAL">Transactional</option>
               <option value="ANALYTICAL">Analytical</option>
               <option value="HYBRID">Hybrid</option>
@@ -58,7 +62,7 @@ const ProspectForm = () => {
             <Field name="techStack">
               {({ field }) => (
                 <SimpleGrid columns={[2, 3, 4]} spacing={4}>
-                  {['MYSQL', 'POSTGRES', 'ORACLE', 'SQL_SERVER', 'MARIA_DB', 'AURORA', 'DYNAMO_DB', 'SPANNER', 'TERADATA', 'COUCHBASE', 'MONGO_DB', 'IBM_DB2', 'CASSANDRA', 'ELASTICSEARCH', 'REDIS', 'KAFKA', 'KUBERNETES', 'DOCKER', 'OTHER'].map((tech) => (
+                  {['MYSQL', 'POSTGRES', 'ORACLE', 'SQL_SERVER', 'MARIA_DB', 'AURORA', 'DYNAMO_DB', 'SPANNER', 'YUGABYTE_DB', 'SCYLLA_DB', 'TI_DB', 'TERADATA', 'COUCHBASE', 'MONGO_DB', 'IBM_DB2', 'CASSANDRA', 'ELASTICSEARCH', 'REDIS', 'KAFKA', 'KUBERNETES', 'DOCKER', 'OTHER'].map((tech) => (
                     <Checkbox
                       key={tech}
                       {...field}

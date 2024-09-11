@@ -85,6 +85,9 @@ enum TechStack {
   NA
   KUBERNETES
   DOCKER
+  YUGABYTE_DB
+  SCYLLA_DB
+  TI_DB
 }
 
 enum Features {
