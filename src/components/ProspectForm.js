@@ -44,16 +44,16 @@ const ProspectForm = () => {
       overflow="hidden"
     >
       <VStack spacing={6} align="stretch" p={8}>
-        <CustomFormControl label="Data Workload Type" required>
-          <Field
-            name="dataWorkloadType"
-            as={Select}
-            defaultValue="TRANSACTIONAL"
-          >
-            <option value="TRANSACTIONAL">Transactional</option>
-            <option value="ANALYTICAL">Analytical</option>
-            <option value="HYBRID">Hybrid</option>
-            <option value="OTHER">Other</option>
+      <CustomFormControl label="Data Workload Type" required error={touched.dataWorkloadType && errors.dataWorkloadType}>
+          <Field name="dataWorkloadType">
+            {({ field }) => (
+              <Select {...field}>
+                <option value="TRANSACTIONAL">Transactional</option>
+                <option value="ANALYTICAL">Analytical</option>
+                <option value="HYBRID">Hybrid</option>
+                <option value="OTHER">Other</option>
+              </Select>
+            )}
           </Field>
         </CustomFormControl>
 
@@ -209,7 +209,6 @@ const ProspectForm = () => {
 
         <CustomFormControl
           label="Project Completion Timeline?"
-          error={touched.timeline && errors.timeline}
         >
           <Field name="timeline" as={Select} placeholder="Select a timeline">
             <option value="0-3 months">0-3 months</option>

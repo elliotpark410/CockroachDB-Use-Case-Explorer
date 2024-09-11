@@ -4,7 +4,6 @@ import {
   Box,
   VStack,
   Heading,
-  Text,
   Button,
   useToast,
 } from '@chakra-ui/react';
@@ -64,7 +63,7 @@ export default function Home() {
           {!results ? (
             <Formik
               initialValues={{
-                dataWorkloadType: '',
+                dataWorkloadType: 'TRANSACTIONAL',
                 cloudProvider: '',
                 techStack: [],
                 dataVolume: '',
