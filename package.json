@@ -13,7 +13,9 @@
     "migrate": "npx prisma migrate dev --name",
     "lint": "next lint",
     "prisma-format": "prisma format",
-    "seed": "node src/db/seed/index.js"
+    "seed": "node src/db/seed/index.js",
+    "test": "node src/db/testDB.js"
+
   },
   "keywords": [],
   "author": "Elliot Park <elliotpark410@gmail.com>",
